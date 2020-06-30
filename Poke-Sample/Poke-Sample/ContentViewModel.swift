@@ -10,29 +10,30 @@ import Combine
 
 final class ContentViewModel: ObservableObject {
     
-    @Published var pokemon: Pokemon?
+    @Published var pokemons: [Pokemon]?
     
-    private var networkingServices = NetWorkingService()
+    private var networkingServices:NetWorkingService
     
-    private lazy var subscriber = Subscribers.Sink(receiveCompletion: reciveCompletion, receiveValue: reciveValue)
+    private lazy var subscriber = Subscribers.Sink(receiveCompletion: reciveCompletion, receiveValue: reciveValues)
     
-    init() {
-       fetchContent()
+    init(netWorkingService:NetWorkingService = NetWorkingService()) {
+        networkingServices = netWorkingService
+        fetchContent()
     }
     
     func fetchContent() {
-        self.fetchPokemon(name: "ditto")
+        self.fetchPokemons(names: ["ditto","snorlax","charmander","pikachu"])
     }
     
-    func fetchPokemon(name: String) {
-        self.networkingServices.getPokemon(pokemonName: name).subscribe(subscriber)
+    func fetchPokemons(names:[String]){
+        self.networkingServices.getMultiplePokemons(pokemonNames: names).subscribe(subscriber)
     }
     
     private func reciveCompletion(_ completion: Subscribers.Completion<Never>) {
        return
     }
     
-    private func reciveValue(_ value: Pokemon) {
-        self.pokemon = value
+    private func reciveValues(_ values:[Pokemon]){
+        self.pokemons = values
     }
 }
