@@ -13,6 +13,7 @@
 		366BF3AD24AB66EB00152479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 366BF3AC24AB66EB00152479 /* Assets.xcassets */; };
 		366BF3B024AB66EB00152479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 366BF3AF24AB66EB00152479 /* Preview Assets.xcassets */; };
 		366BF3B324AB66EC00152479 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366BF3B124AB66EC00152479 /* LaunchScreen.storyboard */; };
+		366BF3BB24AB75AE00152479 /* PokemonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BF3BA24AB75AE00152479 /* PokemonDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		366BF3AF24AB66EB00152479 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		366BF3B224AB66EC00152479 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		366BF3B424AB66EC00152479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		366BF3BA24AB75AE00152479 /* PokemonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				366BF3A624AB66E900152479 /* AppDelegate.swift */,
 				366BF3A824AB66E900152479 /* SceneDelegate.swift */,
 				366BF3AA24AB66E900152479 /* ContentView.swift */,
+				366BF3BA24AB75AE00152479 /* PokemonDetail.swift */,
 				366BF3AC24AB66EB00152479 /* Assets.xcassets */,
 				366BF3B124AB66EC00152479 /* LaunchScreen.storyboard */,
 				366BF3B424AB66EC00152479 /* Info.plist */,
@@ -148,6 +151,7 @@
 			files = (
 				366BF3A724AB66E900152479 /* AppDelegate.swift in Sources */,
 				366BF3A924AB66E900152479 /* SceneDelegate.swift in Sources */,
+				366BF3BB24AB75AE00152479 /* PokemonDetail.swift in Sources */,
 				366BF3AB24AB66E900152479 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
