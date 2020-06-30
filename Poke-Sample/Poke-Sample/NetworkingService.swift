@@ -22,7 +22,6 @@ class NetWorkingService{
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-            
     }
     
 }
