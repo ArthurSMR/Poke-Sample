@@ -14,17 +14,21 @@ struct Pokemon: Decodable {
     let name: String
     let image: UIImage?
     let types: String
-    let location: String
+    
+    init() {
+        name  = ""
+        image = nil
+        types = ""
+    }
     
     enum PokemonKeys: String, CodingKey {
         case name
         case sprites
-        case type
-        case locationAreaEncounters = "location_area_encounters"
+        case type = "types"
     }
     
     enum SpritesKeys: String, CodingKey {
-        case backDefault
+        case backDefault = "back_default"
     }
     
     private struct TypeElement: Codable {
@@ -42,7 +46,6 @@ struct Pokemon: Decodable {
         let mainContainer = try decoder.container(keyedBy: PokemonKeys.self)
         
         self.name = try mainContainer.decode(String.self, forKey: .name)
-        self.location = try mainContainer.decode(String.self, forKey: .locationAreaEncounters)
         
         let spritesContainer = try mainContainer.nestedContainer(keyedBy: SpritesKeys.self, forKey: .sprites)
         

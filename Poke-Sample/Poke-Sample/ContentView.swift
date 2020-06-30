@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var viewModel = ContentViewModel()
+    
     var body: some View {
         Text("Hello, World!")
     }

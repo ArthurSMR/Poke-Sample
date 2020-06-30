@@ -9,19 +9,20 @@
 import Foundation
 import Combine
 
-class NetWorkingService{
+class NetWorkingService {
     
     private var baseURL = URL(string:"https://pokeapi.co/api/v2")!
-    
-    func getPokemon<T:Decodable>(pokemonName:String) -> AnyPublisher<T,Error>{
+        
+    func getPokemon(pokemonName: String) -> AnyPublisher<Pokemon, Never> {
         
         let pokemonUrl = baseURL.appendingPathComponent("pokemon/\(pokemonName)")
        
         return URLSession.shared.dataTaskPublisher(for: pokemonUrl)
             .map {$0.data}
-            .decode(type: T.self, decoder: JSONDecoder())
+            .decode(type: Pokemon.self, decoder: JSONDecoder())
+            .breakpointOnError()
+            .replaceError(with: Pokemon())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
-    
 }
