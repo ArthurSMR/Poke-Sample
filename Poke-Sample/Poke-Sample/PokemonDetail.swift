@@ -9,16 +9,18 @@
 import SwiftUI
 
 struct PokemonDetail: View {
+    
+    var pokemon: Pokemon
+    
     var body: some View {
         
         VStack(alignment: .center, spacing: 8) {
-            Image("pikachu")
+            Image(uiImage: pokemon.image)
                 .resizable()
                 .aspectRatio(1.0, contentMode: .fit)
-            Text("Pikachu")
+            Text(pokemon.name)
                 .font(.title)
-            Text("Elétrico")
-            Text("São Paulo")
+            Text(pokemon.type)
             Spacer()
         } // VStack
     }
@@ -35,6 +37,6 @@ struct PokemonDetail: View {
 
 struct PokemonDetail_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonDetail()
+        PokemonDetail(pokemon: testData[1])
     }
 }

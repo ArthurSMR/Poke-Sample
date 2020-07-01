@@ -8,45 +8,61 @@
 
 import SwiftUI
 
+let testData = [Pokemon(name: "Pikachu", type: "Elétrico", image: UIImage(named: "pikachu")!),
+                Pokemon(name: "Blastoise", type: "Água", image: UIImage(named: "blastoise")!),
+                Pokemon(name: "Dito", type: "Terra", image: UIImage(named: "dito")!),
+                Pokemon(name: "Poliwag", type: "Água", image: UIImage(named: "poliwag")!)]
+
 struct ContentView: View {
+    
+    @State var pokemonsList: [Pokemon]
+    
     var body: some View {
         
-        // 5
-        NavigationView {
-            
-            // 3 etapa
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                NavigationLink(destination: PokemonDetail()) {
-                    PokemonCell()
-                }
-            }
-            // 6 - onAppearWay
-            // 7
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("Pokemons", displayMode: .automatic)
+        GeometryReader { geometry in
+            NavigationView {
+                List {
+                    ForEach(self.pokemonsList) { pokemon in
+                        NavigationLink(destination: PokemonDetail(pokemon: pokemon)) {
+                            PokemonCell(pokemon: pokemon)
+                                .frame(maxHeight: geometry.size.height / 10)
+                        }
+                    } // ForEach
+                } // List
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle("Pokemons", displayMode: .automatic)
+            } // NavigationView
         }
     }
 }
 
 // 4
 struct PokemonCell: View {
+    
+    var pokemon: Pokemon
+    
     var body: some View {
         
-        // 2
         HStack {
-            Image("pikachu")
+            Image(uiImage: pokemon.image)
+                .resizable()
+                .aspectRatio(1.0, contentMode: .fit)
             
-            // 1
             VStack(alignment: .leading) {
-                Text("Nome")
+                Text(pokemon.name)
                     .font(.headline)
-                Text("Localização")
-                    .font(.subheadline)
-                Text("Tipo")
+                Text(pokemon.type)
                     .font(.subheadline)
             }
         }
     }
+}
+
+struct Pokemon: Identifiable {
+    var id = UUID()
+    var name: String
+    var type: String
+    var image: UIImage
 }
 
 /* Etapas:
@@ -63,6 +79,6 @@ struct PokemonCell: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(pokemonsList: testData)
     }
 }
