@@ -49,6 +49,5 @@ class NetWorkingService {
         return Publishers.MergeMany(pokemonsPublishers)
             .collect() // retorna em um vetor de pokemons
             .eraseToAnyPublisher()
-        
     }
 }

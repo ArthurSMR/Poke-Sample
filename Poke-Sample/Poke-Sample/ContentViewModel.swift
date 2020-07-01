@@ -8,15 +8,21 @@
 
 import Combine
 
-final class ContentViewModel: ObservableObject {
+protocol ContentViewModelProtocol: ObservableObject {
+
+    var pokemons: [Pokemon] {get}
+}
+
+final class ContentViewModel: ContentViewModelProtocol {
+        
+    @Published var pokemons: [Pokemon]
     
-    @Published var pokemons: [Pokemon]?
-    
-    private var networkingServices:NetWorkingService
+    private var networkingServices: NetWorkingService
     
     private lazy var subscriber = Subscribers.Sink(receiveCompletion: reciveCompletion, receiveValue: reciveValues)
     
-    init(netWorkingService:NetWorkingService = NetWorkingService()) {
+    init(netWorkingService: NetWorkingService = NetWorkingService()) {
+        pokemons = []
         networkingServices = netWorkingService
         fetchContent()
     }
@@ -33,7 +39,7 @@ final class ContentViewModel: ObservableObject {
        return
     }
     
-    private func reciveValues(_ values:[Pokemon]){
+    private func reciveValues(_ values: [Pokemon]){
         self.pokemons = values
     }
 }
