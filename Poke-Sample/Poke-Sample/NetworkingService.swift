@@ -36,7 +36,7 @@ class NetWorkingService {
         pokemonNames.forEach { (pokemonName) in
             
             /// Endpoint of the pokemon name
-            let pokemonURL = baseURL.appendingPathComponent("pokemon/\(pokemonName)")
+            let pokemonURL = baseURL.appendingPathComponent("pokemon/\(pokemonName.lowercased())")
 
             let publisher = URLSession.shared.dataTaskPublisher(for: pokemonURL) // Publisher of the url session
                 .map {$0.data} // Transform the output of the previous publisher -> get only the data of the request
@@ -51,7 +51,7 @@ class NetWorkingService {
         }
         
         return Publishers.MergeMany(pokemonsPublishers) // Group all the publishers to one
-            .collect() // Group all thes outputs in a single array
+            .collect()// Group all thes outputs in a single array
             .eraseToAnyPublisher() // Transform the to generic publisher
     }
 }

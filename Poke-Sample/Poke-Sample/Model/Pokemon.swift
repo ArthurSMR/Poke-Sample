@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-struct Pokemon: Decodable {
+struct Pokemon: Decodable,Identifiable{
     
     let name: String
     let image: UIImage?
     let types: String
+    let id = UUID()
     
     init() {
         name  = ""
@@ -28,7 +29,7 @@ struct Pokemon: Decodable {
     }
     
     enum SpritesKeys: String, CodingKey {
-        case backDefault = "back_default"
+        case frontDefault = "front_default"
     }
     
     private struct TypeElement: Codable {
@@ -49,7 +50,7 @@ struct Pokemon: Decodable {
         
         let spritesContainer = try mainContainer.nestedContainer(keyedBy: SpritesKeys.self, forKey: .sprites)
         
-        let url = try spritesContainer.decode(URL.self, forKey: .backDefault)
+        let url = try spritesContainer.decode(URL.self, forKey: .frontDefault)
               
         self.image = try UIImage(data: Data(contentsOf: url))
             

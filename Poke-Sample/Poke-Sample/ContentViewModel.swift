@@ -28,7 +28,8 @@ final class ContentViewModel: ContentViewModelProtocol {
     }
     
     func fetchContent() {
-        self.fetchPokemons(names: ["ditto","snorlax","charmander","pikachu"])
+        self.fetchPokemons(names: ["chikorita","cyndaquil","charmander","pikachu","bulbasaur","squirtle","chimchar","totodile","treecko",
+                                   "mudkip","turtwig","piplup"])
     }
     
     func fetchPokemons(names:[String]){
@@ -40,6 +41,6 @@ final class ContentViewModel: ContentViewModelProtocol {
     }
     
     private func reciveValues(_ values: [Pokemon]){
-        self.pokemons = values
+        self.pokemons = values.sorted(by: {$0.name < $1.name})
     }
 }
